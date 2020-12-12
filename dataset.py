@@ -18,9 +18,9 @@ class Dataset(data.Dataset):
         else:
             is_train = 'test_data'
         if dataset == 'SHA':
-            dataset = os.path.join('ShanghaiTech', 'part_A_final')
+            dataset = 'ShanghaiA'
         elif dataset == 'SHB':
-            dataset = os.path.join('ShanghaiTech', 'part_B_final')
+            dataset = 'ShanghaiB'
 
         self.image_list = glob.glob(os.path.join(data_path, dataset, is_train, 'images', '*.jpg'))
         self.label_list = glob.glob(os.path.join(data_path, dataset, is_train, 'new_data', '*.h5'))
@@ -52,7 +52,7 @@ class Dataset(data.Dataset):
 
 
 if __name__ == '__main__':
-    train_dataset = Dataset(r'D:\dataset', 'SHA', True)
+    train_dataset = Dataset(r'./data/', 'SHA', True)
     train_loader = data.DataLoader(train_dataset, batch_size=1, shuffle=True)
     for image, label, att in train_loader:
         print(image.size())
